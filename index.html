@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Campus Desk | Student Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<aside class="side">
+  <div class="brand">Campus<span>Desk</span></div>
+  <nav>
+    <a href="#cgpa"><i>🎓</i>Grades</a>
+    <a href="#attendance"><i>📅</i>Attendance</a>
+    <a href="#bmi"><i>💪</i>BMI</a>
+    <a href="#split"><i>🍕</i>Split bill</a>
+  </nav>
+  <button class="theme" id="themeBtn" onclick="toggleTheme()">☀️ Light</button>
+</aside>
+
+<main>
+  <header class="top">
+    <h1 id="greeting">Hello</h1>
+    <p id="today"></p>
+  </header>
+
+  <section class="tiles" aria-label="Summary">
+    <div class="tile"><small>Semester GPA</small><b id="tGpa">-</b></div>
+    <div class="tile"><small>Attendance</small><b id="tAtt">-</b></div>
+    <div class="tile"><small>BMI</small><b id="tBmi">-</b></div>
+    <div class="tile"><small>Your share</small><b id="tShare">-</b></div>
+  </section>
+
+  <div class="grid">
+
+    <!-- GRADES -->
+    <section class="card" id="cgpa">
+      <h2>Grade calculator</h2>
+      <p class="sub">Enter marks out of 100 for each subject.</p>
+      <div class="row">
+        <div><label for="m1">Discrete Maths</label><input id="m1" type="number" value="78"></div>
+        <div><label for="m2">C Programming</label><input id="m2" type="number" value="86"></div>
+        <div><label for="m3">Computer Organization</label><input id="m3" type="number" value="69"></div>
+        <div><label for="m4">Web Technology</label><input id="m4" type="number" value="91"></div>
+      </div>
+      <label for="m5">Communication Skills</label><input id="m5" type="number" value="74">
+      <button class="go" onclick="calcGrades()">Calculate result</button>
+      <div class="out" id="gradeOut" aria-live="polite"></div>
+    </section>
+
+    <!-- ATTENDANCE -->
+    <section class="card" id="attendance">
+      <h2>Attendance tracker</h2>
+      <p class="sub">Most colleges need at least 75%.</p>
+      <div class="row">
+        <div><label for="total">Classes held</label><input id="total" type="number" value="120"></div>
+        <div><label for="attended">Classes attended</label><input id="attended" type="number" value="84"></div>
+      </div>
+      <button class="go" onclick="calcAttendance()">Check attendance</button>
+      <div class="out att" aria-live="polite">
+        <div class="ring">
+          <svg width="130" height="130" viewBox="0 0 130 130">
+            <circle class="track" cx="65" cy="65" r="52"></circle>
+            <circle id="arc" cx="65" cy="65" r="52"></circle>
+          </svg>
+          <span id="attPct">0%</span>
+        </div>
+        <div id="attText"></div>
+      </div>
+    </section>
+
+    <!-- BMI -->
+    <section class="card" id="bmi">
+      <h2>BMI check</h2>
+      <p class="sub">Body mass index from height and weight.</p>
+      <div class="row">
+        <div><label for="height">Height (cm)</label><input id="height" type="number" value="172"></div>
+        <div><label for="weight">Weight (kg)</label><input id="weight" type="number" value="68"></div>
+      </div>
+      <button class="go" onclick="calcBmi()">Calculate BMI</button>
+      <div class="out" id="bmiOut" aria-live="polite"></div>
+    </section>
+
+    <!-- SPLIT -->
+    <section class="card" id="split">
+      <h2>Split the bill</h2>
+      <p class="sub">Canteen or cafe trip with friends.</p>
+      <div class="row">
+        <div><label for="bill">Bill amount (₹)</label><input id="bill" type="number" value="1850"></div>
+        <div><label for="people">People</label><input id="people" type="number" value="5"></div>
+      </div>
+      <label for="tip">Tip</label>
+      <select id="tip"><option value="0">No tip</option><option value="5">5%</option><option value="10" selected>10%</option><option value="15">15%</option></select>
+      <button class="go" onclick="calcSplit()">Split it</button>
+      <div class="out" id="splitOut" aria-live="polite"></div>
+    </section>
+
+  </div>
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
